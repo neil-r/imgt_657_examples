@@ -76,7 +76,7 @@ class LSMTree:
             return self.memtable[key]
 
         # If not found in memtable, check in disktable
-        for ss_table_path in self.ss_tables_file_paths:
+        for ss_table_path in reversed(self.ss_tables_file_paths):
             sstable = SSTable(ss_table_path).read()
             if key in sstable:
                 return sstable[key]
